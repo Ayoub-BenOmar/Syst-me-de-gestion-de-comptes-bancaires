@@ -3,9 +3,8 @@ package model.compte;
 public class CompteCourant extends Compte {
     private double decouvert;
 
-    public CompteCourant(String code, double solde, double decouvert) {
-        super(code, solde);
-        this.decouvert = decouvert;
+    public CompteCourant() {
+        super();
     }
 
     public void retirer(double montant){
@@ -28,5 +27,9 @@ public class CompteCourant extends Compte {
 
     public void afficherDetails(){
         System.out.println("Compte courant [ Code: " + code + ", Solde: " + solde + ", Decouvert autorisé: " + decouvert + " ]");
+    }
+
+    public void setDecouvert(double decouvert) {
+        this.decouvert = decouvert;
     }
 }

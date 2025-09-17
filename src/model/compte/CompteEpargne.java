@@ -3,9 +3,8 @@ package model.compte;
 public class CompteEpargne extends Compte {
     private static double tauxInteret = 0.05;
 
-    public CompteEpargne(String code, double solde, double tauxInteret) {
-        super(code, solde);
-        this.tauxInteret = tauxInteret;
+    public CompteEpargne() {
+        super();
     }
 
     public void retirer(double montant){

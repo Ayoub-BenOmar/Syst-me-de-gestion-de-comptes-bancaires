@@ -1,15 +1,36 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.Scanner;
+import controller.MainController;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+public class Main {
+    public static void main(String[] arges){
+        Scanner sc = new Scanner(System.in);
+        MainController mc = new MainController();
+        boolean running = true;
+
+        while(running){
+            System.out.println("\n===> MENU BANQUE <===");
+            System.out.println("1. Créer un compte");
+            System.out.println("2. Consulter un compte");
+            System.out.println("3. Quitter");
+            System.out.print("Choisissez une option: ");
+
+            int choice = sc.nextInt();
+
+            switch (choice){
+                case 1:
+                    while(true){
+                        System.out.println("1. Créer un compte épargne");
+                        System.out.println("2. Créer un compte courant");
+                        System.out.println("3. Retour au menu précédent");
+
+                        switch (sc.nextInt()){
+                            case 1:
+                                mc.creeCompteEpargne();
+                                break;
+                        }
+                    }
+            }
         }
+        sc.close();
     }
 }

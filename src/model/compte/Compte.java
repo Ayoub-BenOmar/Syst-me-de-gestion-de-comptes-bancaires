@@ -4,9 +4,11 @@ public abstract class Compte {
     protected String code;
     protected double solde;
 
-    public Compte(String code, double solde){
-        this.code = code;
-        this.solde = solde;
+    static int compteur = 10000;
+
+    public Compte(){
+        this.code = "CPT-" + (compteur++);
+        this.solde = 0;
     }
 
     public abstract void retirer(double montant);
@@ -25,3 +27,5 @@ public abstract class Compte {
         this.solde = solde;
     }
 }
+
+// ctrl+ alt +l

@@ -1,4 +1,9 @@
 package model.operation;
 
-public class Operation {
+public abstract class Operation {
+    protected float numero;
+    protected String date;
+    protected float montant;
+
+
 }
