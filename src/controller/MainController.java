@@ -13,12 +13,32 @@ public class MainController {
     public void creeCompteEpargne(){
         CompteEpargne ce = new CompteEpargne();
         comptes.put(ce.getCode(), ce);
-        System.out.println("Votre compte epargne a ete créé: " + ce.getCode());
+        System.out.println("✅ Votre compte epargne a ete créé: " + ce.getCode());
     }
 
     public void creeCompteCourant(){
         CompteCourant cc = new CompteCourant();
         comptes.put(cc.getCode(), cc);
-        System.out.println("Votre compte courant a ete créé: " + cc.getCode());
+        System.out.println("✅ Votre compte courant a ete créé: " + cc.getCode());
+    }
+
+    public Compte trouverCompte(String code){
+        Compte c = comptes.get(code);
+        if(c == null){
+            System.out.println("❌ Le compte n'existe pas");
+            return null;
+        } else {
+            System.out.println("✅ Bienvenue");
+            return c;
+        }
+    }
+
+    public void Retirer(String code, float montant){
+        Compte c = comptes.get(code);
+        if(c instanceof CompteEpargne){
+
+        } else if(c instanceof CompteCourant){
+
+        }
     }
 }
