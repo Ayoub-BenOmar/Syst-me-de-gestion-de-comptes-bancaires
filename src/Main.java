@@ -18,17 +18,33 @@ public class Main {
 
             switch (choice){
                 case 1:
-                    while(true){
+                    boolean running2 = true;
+                    while(running2){
+                        System.out.println("<========================>");
                         System.out.println("1. Créer un compte épargne");
                         System.out.println("2. Créer un compte courant");
                         System.out.println("3. Retour au menu précédent");
+                        System.out.print("Choisissez une option: ");
 
                         switch (sc.nextInt()){
                             case 1:
                                 mc.creeCompteEpargne();
                                 break;
+                            case 2:
+                                mc.creeCompteCourant();
+                                break;
+                            case 3:
+                                running2 = false;
+                                break;
+                            default:
+                                System.out.println("Veuillez entrer un choix");
                         }
                     }
+                    break;
+                case 2:
+
+
+
             }
         }
         sc.close();
