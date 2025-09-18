@@ -131,9 +131,26 @@ public class MainController {
     }
 
     private void handleDeposit(Scanner sc, String compteCode) {
-        System.out.print("Entrer le montant à déposer: ");
-        float montant = sc.nextFloat();
-        depot(compteCode, montant);
+        System.out.println("1. Faire un versement");
+        System.out.println("2. Faire un virement vers un autre compte");
+        System.out.print("Choisissez une option: ");
+
+        switch(sc.nextInt()) {
+            case 1:
+                System.out.print("Entrer le montant à déposer: ");
+                double montant = sc.nextDouble();
+                deposer(compteCode, montant);
+                break;
+            case 2:
+                System.out.print("Entrer le code du compte destinataire: ");
+                String compteDestinataire = sc.next();
+                System.out.print("Entrer le montant à transférer: ");
+                double montantTransfert = sc.nextDouble();
+                virementVersCompte(compteCode, compteDestinataire, montantTransfert);
+                break;
+            default:
+                System.out.println("Option invalide");
+        }
     }
 //
 //    private void handleShowOperations(String compteCode) {
@@ -167,14 +184,14 @@ public class MainController {
         }
     }
 
-    public void retirer(String code, float montant){
+    public void retirer(String code, double montant){
         Compte c = comptes.get(code);
         if (c != null) {
             c.retirer(montant);
         }
     }
 
-    public void depot(String code, float montant){
+    public void deposer(String code, double montant){
         if (montant <= 0){
             System.out.println("❌ Montant invalide!");
             return;
@@ -197,4 +214,37 @@ public class MainController {
         Compte c = comptes.get(compteCode);
         System.out.println(c.afficherDetails());
     }
+
+    public void virementVersCompte(String compteSource, String compteDestinataire, double montant) {
+        if (montant <= 0) {
+            System.out.println("❌ Montant invalide!");
+            return;
+        }
+
+        Compte cSource = comptes.get(compteSource);
+        Compte cDestinataire = comptes.get(compteDestinataire);
+
+        if (cDestinataire == null) {
+            System.out.println("❌ Compte destinataire non trouvé!");
+            return;
+        }
+
+        if (compteSource.equals(compteDestinataire)) {
+            System.out.println("❌ Impossible de faire un virement vers le même compte!");
+            return;
+        }
+
+        if (cSource.getSolde() < montant) {
+            System.out.println("❌ Solde insuffisant! Solde disponible: " + cSource.getSolde());
+            return;
+        }
+
+        cSource.retirer(montant);
+        cDestinataire.setSolde(cDestinataire.getSolde() + montant);
+
+        System.out.println("✅ Virement de " + montant + " effectué avec succès!");
+        System.out.println("   De: " + compteSource + " vers: " + compteDestinataire);
+        System.out.println("   Nouveau solde: " + cSource.getSolde());
+    }
+
 }
