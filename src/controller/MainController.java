@@ -194,8 +194,6 @@ public class MainController {
 
     public void afficherDetailsCompte(String compteCode) {
         Compte c = comptes.get(compteCode);
-        if (c != null) {
-            System.out.println(c.toString());
-        }
+        System.out.println(c.afficherDetails());
     }
 }

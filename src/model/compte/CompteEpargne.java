@@ -24,7 +24,7 @@ public class CompteEpargne extends Compte {
         return solde * tauxInteret;
     }
 
-    public void afficherDetails(){
-        System.out.println("Compte Épargne [ Code= " + code + ", Solde= " + solde + ", Taux d'intérêt= " + tauxInteret + " ]");
+    public String afficherDetails(){
+        return ("Compte Épargne [ Code= " + code + ", Solde= " + solde + ", Taux d'intérêt= " + tauxInteret + " ]");
     }
 }

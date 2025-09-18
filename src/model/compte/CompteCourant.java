@@ -25,8 +25,8 @@ public class CompteCourant extends Compte {
         return 0;
     }
 
-    public void afficherDetails(){
-        System.out.println("Compte courant [ Code: " + code + ", Solde: " + solde + ", Decouvert autorisé: " + decouvert + " ]");
+    public String afficherDetails(){
+        return ("Compte courant [ Code: " + code + ", Solde: " + solde + ", Decouvert autorisé: " + decouvert + " ]");
     }
 
     public void setDecouvert(double decouvert) {
