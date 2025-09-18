@@ -59,6 +59,9 @@ public class Main {
 
                             switch(sc.nextInt()){
                                 case 1:
+                                    System.out.println("Entrer montant: ");
+                                    int montant = sc.nextInt();
+                                    mc.retirer(compteCode, montant);
                                     break;
                             }
 

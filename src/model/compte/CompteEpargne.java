@@ -14,7 +14,7 @@ public class CompteEpargne extends Compte {
         }
         if(montant <= solde){
             solde -= montant;
-            System.out.println("Retrait de montant: " + montant + " est effectué, votre solde est: " + solde + ".");
+            System.out.println("✅ Retrait de montant: " + montant + " est effectué, votre solde est: " + solde + ".");
         } else {
             System.out.println("Votre solde est insuffisant!");
         }

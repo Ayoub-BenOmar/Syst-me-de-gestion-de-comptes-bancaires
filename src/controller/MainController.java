@@ -33,12 +33,8 @@ public class MainController {
         }
     }
 
-    public void Retirer(String code, float montant){
+    public void retirer(String code, float montant){
         Compte c = comptes.get(code);
-        if(c instanceof CompteEpargne){
-
-        } else if(c instanceof CompteCourant){
-
-        }
+        c.retirer(montant);
     }
 }

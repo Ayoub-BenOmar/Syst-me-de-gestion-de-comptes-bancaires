@@ -14,10 +14,10 @@ public class CompteCourant extends Compte {
         }
 
         if(solde - montant < -decouvert){
-            System.out.println("Retirait impossible, vous depasser votre decouvert!");
+            System.out.println("❌ Retrait impossible, vous depasser votre decouvert!");
         } else {
             solde -= montant;
-            System.out.println("Retirait de montant: " + montant + " effectué avec success, votre nouveau solde est: " + solde);
+            System.out.println("✅ Retrait de montant: " + montant + " effectué avec success, votre nouveau solde est: " + solde);
         }
     }
 

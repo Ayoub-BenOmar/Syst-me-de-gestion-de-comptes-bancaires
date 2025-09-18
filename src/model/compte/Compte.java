@@ -8,7 +8,7 @@ public abstract class Compte {
 
     public Compte(){
         this.code = "CPT-" + (compteur++);
-        this.solde = 0;
+        this.solde = 5000;
     }
 
     public abstract void retirer(double montant);
