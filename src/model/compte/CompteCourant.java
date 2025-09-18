@@ -29,6 +29,15 @@ public class CompteCourant extends Compte {
         return ("Compte courant [ Code: " + code + ", Solde: " + solde + ", Decouvert autorisé: " + decouvert + " ]");
     }
 
+    public void deposer(double montant){
+        if (montant <= 0) {
+            System.out.println("❌ Le montant est ivalide.");
+        } else {
+            setSolde(solde + montant);
+            System.out.println("✅ Déposé avec succès");
+        }
+    }
+
     public void setDecouvert(double decouvert) {
         this.decouvert = decouvert;
     }

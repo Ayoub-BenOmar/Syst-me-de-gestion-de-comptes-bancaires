@@ -27,4 +27,13 @@ public class CompteEpargne extends Compte {
     public String afficherDetails(){
         return ("Compte Épargne [ Code= " + code + ", Solde= " + solde + ", Taux d'intérêt= " + tauxInteret + " ]");
     }
+
+    public void deposer(double montant){
+        if(montant <= 0){
+            System.out.println("❌ Le montant est ivalide.");
+        } else {
+            setSolde(solde + montant);
+            System.out.println("✅ Déposé avec succès");
+        }
+    }
 }

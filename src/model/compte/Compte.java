@@ -8,12 +8,13 @@ public abstract class Compte {
 
     public Compte(){
         this.code = "CPT-" + (compteur++);
-        this.solde = 5000;
+        this.solde = 0;
     }
 
     public abstract void retirer(double montant);
     public abstract double calculerInteret();
     public abstract String afficherDetails();
+    public abstract void deposer(double montant);
 
     public String getCode(){
         return code;

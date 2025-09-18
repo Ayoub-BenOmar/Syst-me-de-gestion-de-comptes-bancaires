@@ -94,7 +94,7 @@ public class MainController {
                         handleWithdraw(sc, compteCode);
                         break;
                     case 2:
-//                        handleDeposit(sc, compteCode);
+                        handleDeposit(sc, compteCode);
                         break;
                     case 3:
 //                        handleShowOperations(compteCode);
@@ -117,7 +117,7 @@ public class MainController {
     private void showConsultAccountMenu() {
         System.out.println("===> MENU CONSULTER COMPTE <===");
         System.out.println("1. Retirer");
-        System.out.println("2. Faire un versement");
+        System.out.println("2. Faire un dépôt");
         System.out.println("3. Afficher les opérations");
         System.out.println("4. Afficher les détails du compte");
         System.out.println("5. Retour au menu précédent");
@@ -130,11 +130,11 @@ public class MainController {
         retirer(compteCode, montant);
     }
 
-//    private void handleDeposit(Scanner sc, String compteCode) {
-//        System.out.print("Entrer le montant à déposer: ");
-//        float montant = sc.nextFloat();
-//        versement(compteCode, montant);
-//    }
+    private void handleDeposit(Scanner sc, String compteCode) {
+        System.out.print("Entrer le montant à déposer: ");
+        float montant = sc.nextFloat();
+        depot(compteCode, montant);
+    }
 //
 //    private void handleShowOperations(String compteCode) {
 //        afficherOperations(compteCode);
@@ -174,16 +174,16 @@ public class MainController {
         }
     }
 
-//    public void versement(String code, float montant){
-//        if (montant <= 0){
-//            System.out.println("❌ Montant invalide!");
-//            return;
-//        }
-//        Compte c = comptes.get(code);
-//        if (c != null) {
-//            c.versement(montant);
-//        }
-//    }
+    public void depot(String code, float montant){
+        if (montant <= 0){
+            System.out.println("❌ Montant invalide!");
+            return;
+        }
+        Compte c = comptes.get(code);
+        if (c != null) {
+            c.deposer(montant);
+        }
+    }
 //
 //    public void afficherOperations(String compteCode) {
 //        Compte c = comptes.get(compteCode);
