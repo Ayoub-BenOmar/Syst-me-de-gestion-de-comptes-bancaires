@@ -51,7 +51,7 @@ public class MainController {
                     handleCreateSavingsAccount();
                     break;
                 case 2:
-                    handleCreateCurrentAccount();
+                    handleCreateCurrentAccount(sc);
                     break;
                 case 3:
                     running2 = false;
@@ -74,8 +74,8 @@ public class MainController {
         creeCompteEpargne();
     }
 
-    private void handleCreateCurrentAccount() {
-        creeCompteCourant();
+    private void handleCreateCurrentAccount(Scanner sc) {
+        creeCompteCourant(sc);
     }
 
     private void handleConsultAccountMenu(Scanner sc) {
@@ -167,10 +167,19 @@ public class MainController {
         System.out.println("✅ Votre compte epargne a ete créé: " + ce.getCode());
     }
 
-    public void creeCompteCourant(){
+    public void creeCompteCourant(Scanner sc){
         CompteCourant cc = new CompteCourant();
+        System.out.println("Entrer le montant de decouvert: ");
+        double decouvert = sc.nextDouble();
+
+        if(decouvert < 0){
+            System.out.println("❌ Invalid valeur.");
+        }
+
+        cc.setDecouvert(decouvert);
         comptes.put(cc.getCode(), cc);
         System.out.println("✅ Votre compte courant a ete créé: " + cc.getCode());
+        System.out.println("Deouvert autorisé: " + decouvert);
     }
 
     public Compte trouverCompte(String code){

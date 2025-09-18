@@ -8,8 +8,8 @@ public class CompteCourant extends Compte {
     }
 
     public void retirer(double montant){
-        if (montant <= 0 ){
-            System.out.println("Votre montant: " + montant + " est inavlide!");
+        if (getSolde() <= 0 ){
+            System.out.println("❌ Solde insuffisante!");
             return;
         }
 
