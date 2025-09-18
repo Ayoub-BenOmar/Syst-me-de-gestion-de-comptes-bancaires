@@ -181,7 +181,8 @@ public class MainController {
         }
         Compte c = comptes.get(code);
         if (c != null) {
-            c.deposer(montant);
+            c.setSolde(c.getSolde() + montant);
+            System.out.println("✅ Versement de " + montant + " effectué avec succès!");
         }
     }
 //

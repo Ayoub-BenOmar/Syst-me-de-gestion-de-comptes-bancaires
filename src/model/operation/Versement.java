@@ -1,4 +1,5 @@
 package model.operation;
 
-public class Versement {
+public class Versement extends Operation{
+
 }

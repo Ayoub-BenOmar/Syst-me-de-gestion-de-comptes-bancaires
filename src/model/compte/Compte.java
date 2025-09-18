@@ -14,7 +14,6 @@ public abstract class Compte {
     public abstract void retirer(double montant);
     public abstract double calculerInteret();
     public abstract String afficherDetails();
-    public abstract void deposer(double montant);
 
     public String getCode(){
         return code;

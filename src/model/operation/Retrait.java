@@ -1,4 +1,4 @@
 package model.operation;
 
-public class Retrait {
+public class Retrait extends Operation{
 }

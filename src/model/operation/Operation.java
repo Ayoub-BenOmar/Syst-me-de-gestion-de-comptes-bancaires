@@ -1,9 +1,12 @@
 package model.operation;
 
+import java.time.LocalDateTime;
+import java.util.spi.LocaleNameProvider;
+
 public abstract class Operation {
-    protected float numero;
-    protected String date;
-    protected float montant;
+    private double numero;
+    private LocalDateTime date;
+    private double montant;
 
 
 }
