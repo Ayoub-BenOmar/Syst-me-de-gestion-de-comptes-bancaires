@@ -8,28 +8,51 @@ public class CompteCourant extends Compte {
     }
 
     public void retirer(double montant){
-        if (getSolde() <= 0 ){
-            System.out.println("❌ Solde insuffisante!");
-            return;
-        }
+        try {
+            if (montant <= 0 ){
+                System.out.println("==> Votre montant: " + montant + " est invalide!");
+                return;
+            }
 
-        if(solde - montant < -decouvert){
-            System.out.println("❌ Retrait impossible, vous depasser votre decouvert!");
-        } else {
-            solde -= montant;
-            System.out.println("✅ Retrait de montant: " + montant + " effectué avec success, votre nouveau solde est: " + solde);
+            if(getSolde() <= 0){
+                System.out.println("==> Votre solde est insuffisant.");
+                return;
+            }
+
+            if(getSolde() - montant < -decouvert){
+                System.out.println("==> Retrait impossible, vous dépassez votre découvert!");
+            } else {
+                setSolde(getSolde() - montant);
+                System.out.println("==> Retrait de montant: " + montant + " effectué avec succès, votre nouveau solde est: " + solde);
+            }
+        } catch (Exception e) {
+            System.out.println("==> Erreur lors du retrait: " + e.getMessage());
         }
     }
 
     public double calculerInteret(){
-        return 0;
+        try {
+            return 0;
+        } catch (Exception e) {
+            System.out.println("==> Erreur lors du calcul des intérêts: " + e.getMessage());
+            return 0;
+        }
     }
 
     public String afficherDetails(){
-        return ("Compte courant [ Code: " + code + ", Solde: " + solde + ", Decouvert autorisé: " + decouvert + " ]");
+        try {
+            return ("Compte courant [ Code: " + code + ", Solde: " + solde + ", Découvert autorisé: " + decouvert + " ]");
+        } catch (Exception e) {
+            System.out.println("==> Erreur lors de l'affichage des détails: " + e.getMessage());
+            return "Erreur d'affichage";
+        }
     }
 
     public void setDecouvert(double decouvert) {
-        this.decouvert = decouvert;
+        try {
+            this.decouvert = decouvert;
+        } catch (Exception e) {
+            System.out.println("==> Erreur lors de la modification du découvert: " + e.getMessage());
+        }
     }
 }
