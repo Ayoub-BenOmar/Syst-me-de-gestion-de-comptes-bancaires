@@ -5,6 +5,9 @@ import java.util.HashMap;
 import model.compte.Compte;
 import model.compte.CompteCourant;
 import model.compte.CompteEpargne;
+import model.operation.Operation;
+import model.operation.Retrait;
+import model.operation.Versement;
 
 public class MainController {
     private HashMap<String, Compte> comptes = new HashMap<>();
@@ -48,10 +51,10 @@ public class MainController {
 
             switch (sc.nextInt()) {
                 case 1:
-                    handleCreateSavingsAccount();
+                    creeCompteEpargne();
                     break;
                 case 2:
-                    handleCreateCurrentAccount(sc);
+                    creeCompteCourant(sc);;
                     break;
                 case 3:
                     running2 = false;
@@ -68,14 +71,6 @@ public class MainController {
         System.out.println("2. Créer un compte courant");
         System.out.println("3. Retour au menu précédent");
         System.out.print("Choisissez une option: ");
-    }
-
-    private void handleCreateSavingsAccount() {
-        creeCompteEpargne();
-    }
-
-    private void handleCreateCurrentAccount(Scanner sc) {
-        creeCompteCourant(sc);
     }
 
     private void handleConsultAccountMenu(Scanner sc) {
@@ -97,10 +92,10 @@ public class MainController {
                         handleDeposit(sc, compteCode);
                         break;
                     case 3:
-//                        handleShowOperations(compteCode);
+                        afficherOperations(compteCode);
                         break;
                     case 4:
-                        handleShowAccountDetails(compteCode);
+                        afficherDetailsCompte(compteCode);
                         break;
                     case 5:
                         running3 = false;
@@ -152,14 +147,6 @@ public class MainController {
                 System.out.println("Option invalide");
         }
     }
-//
-//    private void handleShowOperations(String compteCode) {
-//        afficherOperations(compteCode);
-//    }
-
-    private void handleShowAccountDetails(String compteCode) {
-        afficherDetailsCompte(compteCode);
-    }
 
     public void creeCompteEpargne(){
         CompteEpargne ce = new CompteEpargne();
@@ -197,6 +184,7 @@ public class MainController {
         Compte c = comptes.get(code);
         if (c != null) {
             c.retirer(montant);
+            c.ajouterOperation(new Retrait(montant, "Distributeur ATM"));
         }
     }
 
@@ -208,16 +196,17 @@ public class MainController {
         Compte c = comptes.get(code);
         if (c != null) {
             c.setSolde(c.getSolde() + montant);
+            c.ajouterOperation(new Versement(montant, "Salaire"));
             System.out.println("✅ Versement de " + montant + " effectué avec succès!");
         }
     }
-//
-//    public void afficherOperations(String compteCode) {
-//        Compte c = comptes.get(compteCode);
-//        if (c != null) {
-//            c.afficherOperations();
-//        }
-//    }
+
+    public void afficherOperations(String compteCode) {
+        Compte c = comptes.get(compteCode);
+        if (c != null) {
+            c.affichierOperations();
+        }
+    }
 
     public void afficherDetailsCompte(String compteCode) {
         Compte c = comptes.get(compteCode);
@@ -250,6 +239,8 @@ public class MainController {
 
         cSource.retirer(montant);
         cDestinataire.setSolde(cDestinataire.getSolde() + montant);
+        cSource.ajouterOperation(new Retrait(montant, "Virement sortant"));
+        cDestinataire.ajouterOperation(new Versement(montant, "Virement externe"));
 
         System.out.println("✅ Virement de " + montant + " effectué avec succès!");
         System.out.println("   De: " + compteSource + " vers: " + compteDestinataire);
