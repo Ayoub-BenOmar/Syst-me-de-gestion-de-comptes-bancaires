@@ -213,7 +213,7 @@ public class MainController {
         try {
             CompteEpargne ce = new CompteEpargne();
             comptes.put(ce.getCode(), ce);
-            System.out.println("==> Votre compte épargne a été créé: " + ce.getCode());
+            System.out.println("\n==> Votre compte épargne a été créé: " + ce.getCode());
         } catch (Exception e) {
             System.out.println("==> Erreur lors de la création du compte épargne: " + e.getMessage());
         }
@@ -222,7 +222,7 @@ public class MainController {
     public void creeCompteCourant(Scanner sc){
         try {
             CompteCourant cc = new CompteCourant();
-            System.out.print("Entrer le montant de découvert: ");
+            System.out.print("\nEntrer le montant de découvert: ");
             double decouvert = sc.nextDouble();
 
             if(decouvert < 0){
@@ -232,8 +232,8 @@ public class MainController {
 
             cc.setDecouvert(decouvert);
             comptes.put(cc.getCode(), cc);
-            System.out.println("==> Votre compte courant a été créé: " + cc.getCode());
-            System.out.println("   Découvert autorisé: " + decouvert);
+            System.out.println("\n==> Votre compte courant a été créé: " + cc.getCode());
+            System.out.println("    Découvert autorisé: " + decouvert);
         } catch (InputMismatchException e) {
             System.out.println("==> Erreur: Veuillez entrer un montant valide pour le découvert!");
             sc.nextLine();
@@ -245,16 +245,16 @@ public class MainController {
     public Compte trouverCompte(String code){
         try {
             if (code == null || code.trim().isEmpty()) {
-                System.out.println("==> Code de compte invalide!");
+                System.out.println("\n==> Code de compte invalide!");
                 return null;
             }
 
             Compte c = comptes.get(code);
             if(c == null){
-                System.out.println("==> Le compte n'existe pas");
+                System.out.println("\n==> Le compte n'existe pas");
                 return null;
             } else {
-                System.out.println("==> Bienvenue");
+                System.out.println("\n==> Bienvenue");
                 return c;
             }
         } catch (Exception e) {
@@ -266,7 +266,7 @@ public class MainController {
     public void retirer(String code, double montant){
         try {
             if (montant <= 0) {
-                System.out.println("==> Le montant doit être positif!");
+                System.out.println("\n==> Le montant doit être positif!");
                 return;
             }
 
@@ -275,7 +275,7 @@ public class MainController {
                 c.retirer(montant);
                 c.ajouterOperation(new Retrait(montant, "Distributeur ATM"));
             } else {
-                System.out.println("==> Compte non trouvé!");
+                System.out.println("\n==> Compte non trouvé!");
             }
         } catch (Exception e) {
             System.out.println("==> Erreur lors du retrait: " + e.getMessage());
@@ -293,9 +293,9 @@ public class MainController {
             if (c != null) {
                 c.setSolde(c.getSolde() + montant);
                 c.ajouterOperation(new Versement(montant, "Salaire"));
-                System.out.println("==> Versement de " + montant + " effectué avec succès!");
+                System.out.println("\n==> Versement de " + montant + " effectué avec succès!");
             } else {
-                System.out.println("==> Compte non trouvé!");
+                System.out.println("\n==> Compte non trouvé!");
             }
         } catch (Exception e) {
             System.out.println("==> Erreur lors du versement: " + e.getMessage());
@@ -331,12 +331,12 @@ public class MainController {
     public void virementVersCompte(String compteSource, String compteDestinataire, double montant) {
         try {
             if (montant <= 0) {
-                System.out.println("==> Montant invalide!");
+                System.out.println("\n==> Montant invalide!");
                 return;
             }
 
             if (compteSource == null || compteDestinataire == null) {
-                System.out.println("==> Codes de compte invalides!");
+                System.out.println("\n==> Codes de compte invalides!");
                 return;
             }
 
@@ -344,34 +344,34 @@ public class MainController {
             Compte cDestinataire = comptes.get(compteDestinataire);
 
             if (cSource == null) {
-                System.out.println("==> Compte source non trouvé!");
+                System.out.println("\n==> Compte source non trouvé!");
                 return;
             }
 
             if (cDestinataire == null) {
-                System.out.println("==> Compte destinataire non trouvé!");
+                System.out.println("\n==> Compte destinataire non trouvé!");
                 return;
             }
 
             if (compteSource.equals(compteDestinataire)) {
-                System.out.println("==> Impossible de faire un virement vers le même compte!");
+                System.out.println("\n==> Impossible de faire un virement vers le même compte!");
                 return;
             }
 
             if (cSource.getSolde() < montant) {
-                System.out.println("==> Solde insuffisant! Solde disponible: " + cSource.getSolde());
+                System.out.println("\n==> Solde insuffisant! Solde disponible: " + cSource.getSolde());
                 return;
             }
 
             cSource.retirer(montant);
             cDestinataire.setSolde(cDestinataire.getSolde() + montant);
 
-            cSource.ajouterOperation(new Retrait(montant, "Virement sortant vers " + compteDestinataire));
-            cDestinataire.ajouterOperation(new Versement(montant, "Virement entrant de " + compteSource));
+            cSource.ajouterOperation(new Retrait(montant, "\nVirement sortant vers " + compteDestinataire));
+            cDestinataire.ajouterOperation(new Versement(montant, "\nVirement entrant de " + compteSource));
 
-            System.out.println("==> Virement de " + montant + " effectué avec succès!");
-            System.out.println("   De: " + compteSource + " vers: " + compteDestinataire);
-            System.out.println("   Nouveau solde: " + cSource.getSolde());
+            System.out.println("\n==> Virement de " + montant + " effectué avec succès!");
+            System.out.println("      De: " + compteSource + " vers: " + compteDestinataire);
+            System.out.println("      Nouveau solde: " + cSource.getSolde());
 
         } catch (Exception e) {
             System.out.println("==> Erreur lors du virement: " + e.getMessage());

@@ -36,7 +36,7 @@ public abstract class Compte {
                 System.out.println("Aucune opération trouvée");
             } else {
                 for (Operation op : operations){
-                    System.out.println(op.affichierOperation());
+                    System.out.println("\n" + op.affichierOperation());
                 }
             }
         } catch (Exception e) {

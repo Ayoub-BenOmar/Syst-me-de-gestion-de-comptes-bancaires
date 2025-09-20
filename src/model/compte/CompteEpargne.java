@@ -16,14 +16,14 @@ public class CompteEpargne extends Compte {
     public void retirer(double montant){
         try {
             if(montant <= 0){
-                System.out.println("==> Le montant est invalide.");
+                System.out.println("\n==> Le montant est invalide.");
                 return;
             }
             if(montant <= solde){
                 solde -= montant;
-                System.out.println("==> Retrait de montant: " + montant + " est effectué, votre solde est: " + solde + ".");
+                System.out.println("\n==> Retrait de montant: " + montant + " est effectué, votre solde est: " + solde + ".");
             } else {
-                System.out.println("==> Votre solde est insuffisant!");
+                System.out.println("\n==> Votre solde est insuffisant!");
             }
         } catch (Exception e) {
             System.out.println("==> Erreur lors du retrait: " + e.getMessage());
@@ -58,7 +58,7 @@ public class CompteEpargne extends Compte {
 
     public String afficherDetails(){
         try {
-            return ("Compte Épargne [ Code: " + code + ", Solde: " + getSolde() + ", Taux d'intérêt: " + tauxInteret + " ]");
+            return ("\nCompte Épargne [ Code: " + code + ", Solde: " + getSolde() + ", Taux d'intérêt: " + tauxInteret + " ]");
         } catch (Exception e) {
             System.out.println("==> Erreur lors de l'affichage des détails: " + e.getMessage());
             return "Erreur d'affichage";
